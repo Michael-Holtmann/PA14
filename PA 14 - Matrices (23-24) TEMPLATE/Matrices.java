@@ -29,7 +29,7 @@ public class Matrices
     print("A", A);
     print("B", B);
     print("D", D);
-    print("E", D);
+    print("E", E);
     
     // The code for the complete main method is in the text box in the project window.
     // I encourage you to type and understand the code yourself and use the provided
@@ -178,9 +178,11 @@ public class Matrices
 
       for (int i = 0; i < a.length; i++){
         for (int j = 0; j < a[0].length; j++){
-          return a[i][j] == b[i][j]
+          if (a[i][j] != b[i][j]) return false;
         }
       }
+
+      return true;
     }
     // (4) Matrix Multiplication - mul method
     // overloaded method
@@ -209,11 +211,13 @@ public class Matrices
     
     int[][] result = new int[n][n];
 
-    for (int i = 0; i < n; i++))
+    for (int i = 0; i < n; i++){
       for (int j = 0; j<n; j++){
         if (i == j) result[i][j] = 1;
         else result[i][j] = 0;
       }
+    }
+      
 
     return result;
   }
@@ -224,7 +228,7 @@ public class Matrices
     int[][] result = new int[a[0].length][a.length];
     
     for (int i = 0; i < a.length; i++) {
-      for(int j = 0; j < a[0].length; i++){
+      for(int j = 0; j < a[0].length; j++){
         result[j][i] = a[i][j];
       }
     }
