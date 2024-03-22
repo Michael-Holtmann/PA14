@@ -112,6 +112,17 @@ public class Matrices
     }
         
     // (3) Matrix Equality - equals method
+
+    private static boolean equals(int[][] a, int[][] b){
+      if (a.length != b.length || a[0].length != b[0].length) return false;
+
+      for (int i = 0; i < a.length; i++){
+        for (int j = 0; j < a[0].length; j++){
+          return a[i][j] == b[i][j]
+        }
+      }
+    }
+    // (4) Matrix Multiplication - mul method
     // overloaded method
     private static int[][] mul(int[][] a, int b[][]){
         if (a[0].length != b.length) return null;
@@ -133,8 +144,31 @@ public class Matrices
     }
       
     // (5) Identity Matrix - id method
+    private static int[][] id(int n){
+      int[][] result = new int[n][n];
+
+      for (int i = 0; i < n; i++))
+        for (int j = 0; j<n; j++){
+          if (i == j) result[i][j] = 1;
+          else result[i][j] = 0;
+        }
+
+      return result;
+    }
 
     // (6) Transposition - transpose method
+
+  private static int[][] transpose(int[][] a){
+    int[][] result = new int[a[0].length][a.length];
+    
+    for (int i = 0; i < a.length; i++) {
+      for(int j = 0; j < a[0].length; i++){
+        result[j][i] = a[i][j];
+      }
+    }
+
+    return result;
+  }
    
      
     // PROVIDED METHOD - print a matrix (DON'T CHANGE!)
@@ -142,36 +176,36 @@ public class Matrices
     //
     private static void print( String name, int[][] m )
     {
-        if( !name.equals("") )
-           System.out.printf("Matrix %s:\n" , name);
-        
-        for( int[] row : m)
-        {
-        System.out.printf(" |");
-        for( int e : row )
-        {
-            System.out.printf("%4d", e );
-        }
-        System.out.printf(" |\n");
-        }
+      if( !name.equals("") )
+         System.out.printf("Matrix %s:\n" , name);
+      
+      for( int[] row : m)
+      {
+      System.out.printf(" |");
+      for( int e : row )
+      {
+          System.out.printf("%4d", e );
+      }
+      System.out.printf(" |\n");
+      }
         
        
     }
     
     private static void print1( String name, int[][] m )
     {
-       if( !name.equals("") )
-           System.out.printf("Matrix %s:\n" , name);
-       
-       for( int r=0; r < m.length; r++)
-       {
-           System.out.printf(" |");
-           for( int c=0; c < m[0].length; c++)
-           {
-               System.out.printf("%4d", m[r][c] );
-           }
-           System.out.printf(" |\n");
-       }
+      if( !name.equals("") )
+         System.out.printf("Matrix %s:\n" , name);
+      
+      for( int r=0; r < m.length; r++)
+      {
+         System.out.printf(" |");
+         for( int c=0; c < m[0].length; c++)
+         {
+             System.out.printf("%4d", m[r][c] );
+         }
+         System.out.printf(" |\n");
+      }
        
     }
 }
