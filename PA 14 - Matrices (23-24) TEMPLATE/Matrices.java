@@ -6,61 +6,121 @@ import java.util.*;
 
 public class Matrices
 {
-    public static void main(String[] args)
-    {
-        // create expample matrices
-        int[][] A = { {1,2,3},
-                      {2,5,3}, 
-                      {1,0,80}};
-
-        int[][] B = { {5}, 
-                      {3}, 
-                      {17} }; // nice system ax=b.
-
-        int[][] D = { {2,2,3}, 
-                      {2,5,3}, 
-                      {2,-1,5} }; // (a-d) not invertible.
-
-        int[][] E = { {3, 1}, 
-                      {-1,4}, 
-                      {2, 5} };
-        
-        // Display the inital matrices
-        print("A", A);
-        print("B", B);
-        print("D", D);
-        print("E", D);
-        
-        // The code for the complete main method is in the text box in the project window.
-        // I encourage you to type and understand the code yourself and use the provided
-        // code as a reference rather than simply copy and pasting!
-        //
-        
-        // (1) Scalar Multiplication
-        System.out.printf("\nScalar Multiplication:\n");
-        int[][] result = mul(A, 2);
-        print("2*A", result );
-        
-        // (2) Addition and Subtraction
-        System.out.printf("\nMatrix Addition:\n");      
-       
-        System.out.printf("\nMatrix Subtraction:\n");
+  public static void main(String[] args)
+  {
+    // create expample matrices
+    int[][] A = { {1,2,3},
+                  {2,5,3}, 
+                  {1,0,80}};
   
-        // (3) Matrix equality
-        System.out.printf("\nMatrix Equality:\n");
-            
-        // (4) Matrix multiplication    
-        System.out.printf("\nMatrix Multiplication:\n");
-        print("A * B", mul(A, A));
+    int[][] B = { {5}, 
+                  {3}, 
+                  {17} }; // nice system ax=b.
+  
+    int[][] D = { {2,2,3}, 
+                  {2,5,3}, 
+                  {2,-1,5} }; // (a-d) not invertible.
+  
+    int[][] E = { {3, 1}, 
+                  {-1,4}, 
+                  {2, 5} };
+    
+    // Display the inital matrices
+    print("A", A);
+    print("B", B);
+    print("D", D);
+    print("E", D);
+    
+    // The code for the complete main method is in the text box in the project window.
+    // I encourage you to type and understand the code yourself and use the provided
+    // code as a reference rather than simply copy and pasting!
+    //
+    
+    // (1) Scalar Multiplication
+    System.out.printf("\nScalar Multiplication:\n");
+    int[][] result = mul(A, 2);
+    print("2*A", result );
+    
+    // (2) Addition and Subtraction
+    System.out.printf("\nMatrix Addition:\n");      
+    result = add( A, D);
+    
+    if( result != null)
+      print("A+D", result );
+      
+    else
+      System.out.printf("A + D undefined. Matrices not same dimension.\n");
+    
+    result = add( A, B);
+    if( result != null)
+      print("A+B", result );
+      
+    else
+      System.out.printf("A + B undefined. Matrices not of the same dimension.\n");
+    
+    System.out.printf("\nMatrix Subtraction:\n");
+    result = sub(A, D);
+    
+    print("A-D", result );
 
- 
-        // (5) Identity Matrix   
-        System.out.printf("\nIdentity Matrix:\n");
-
-        // (6) Transposition
-        System.out.printf("\nTranspose:\n");
-           
-    }
+    
+    // (3) Matrix equality
+    System.out.printf("\nMatrix Equality:\n");
+    if( equals( A, A ) )
+      System.out.printf("Matrices A and A are equal!\n");
+      
+    else
+      System.out.printf("Matrices A and A are NOT equal.\n");
+    
+    if( equals( A, B ) )
+      System.out.printf("Matrices A and B are equal!\n");
+      
+    else
+      System.out.printf("Matrices A and B are NOT equal.\n");
+    
+        
+    // (4) Matrix multiplication    
+    System.out.printf("\nMatrix Multiplication:\n");
+    result = mul(A,B);
+    
+    if( result != null)
+      print("A*B", result);
+      
+    else
+      System.out.printf("The product A*B is not defined.\n");
+    
+    result = mul(B,A);
+    if( result != null)
+      print("B*A", result);
+      
+    else
+      System.out.printf("The product B*A is not defined.\n");
+  
+  
+    // (5) Identity Matrix   
+    System.out.printf("\nIdentity Matrix:\n");
+    result = id(5);
+    
+    print("I(5)", result);
+    
+    result = id( -4 );
+    if( result != null)
+      print("I(-4)", result);
+      
+    else
+      System.out.printf("There is no I(-4) identity matrix.\n");
+  
+    // (6) Transposition
+    System.out.printf("\nTranspose:\n");
+    result = transpose( E );
+    
+    print("transpose(E)", result);
+    
+    result = transpose( B );
+    
+    print("transpose(B)", result);
+         
+  }
         
     // (1) Scalar Multiplication
     
@@ -144,17 +204,19 @@ public class Matrices
     }
       
     // (5) Identity Matrix - id method
-    private static int[][] id(int n){
-      int[][] result = new int[n][n];
+  private static int[][] id(int n){
+    if (n < 1) return null;
+    
+    int[][] result = new int[n][n];
 
-      for (int i = 0; i < n; i++))
-        for (int j = 0; j<n; j++){
-          if (i == j) result[i][j] = 1;
-          else result[i][j] = 0;
-        }
+    for (int i = 0; i < n; i++))
+      for (int j = 0; j<n; j++){
+        if (i == j) result[i][j] = 1;
+        else result[i][j] = 0;
+      }
 
-      return result;
-    }
+    return result;
+  }
 
     // (6) Transposition - transpose method
 
