@@ -9,10 +9,21 @@ public class Matrices
     public static void main(String[] args)
     {
         // create expample matrices
-        int[][] A = { {1,2,3}, {2,5,3}, {1,0,8 } }; // nicely invertible
-        int[][] B = { {5}, { 3}, {17} }; // nice system ax=b.
-        int[][] D = { {2,2,3}, {2,5,3}, {2, -1, 5} }; // (a-d) not invertible.
-        int[][] E = { {3, 1}, {-1,4}, {2, 5} };
+        int[][] A = { {1,2,3},
+                      {2,5,3}, 
+                      {1,0,80}};
+
+        int[][] B = { {5}, 
+                      {3}, 
+                      {17} }; // nice system ax=b.
+
+        int[][] D = { {2,2,3}, 
+                      {2,5,3}, 
+                      {2,-1,5} }; // (a-d) not invertible.
+
+        int[][] E = { {3, 1}, 
+                      {-1,4}, 
+                      {2, 5} };
         
         // Display the inital matrices
         print("A", A);
@@ -40,6 +51,8 @@ public class Matrices
             
         // (4) Matrix multiplication    
         System.out.printf("\nMatrix Multiplication:\n");
+        print("A * B", mul(A, A));
+
  
         // (5) Identity Matrix   
         System.out.printf("\nIdentity Matrix:\n");
@@ -68,12 +81,56 @@ public class Matrices
     
     private static int[][] add( int[][] a, int[][] b)
     {
-        return null;  // change this
+        int[][] sum = new int[a.length][a[0].length];
+
+        if (a.length != b.length || a[0].length != b[0].length) {
+          return null;
+        }
+
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[0].length; j++) {
+                sum[i][j] = a[i][j] + b[i][j];
+            }
+        }
+
+    return sum;
+    }
+    private static int[][] sub(int[][] a, int[][] b){
+        int[][] difference = new int[a.length][a[0].length];
+
+        if (a.length != b.length || a[0].length != b[0].length) {
+          return null;
+        }
+
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[0].length; j++) {
+                difference[i][j] = a[i][j] - b[i][j];
+            }
+        }
+
+    return difference;
     }
         
     // (3) Matrix Equality - equals method
-    
-    // (4) Multiplication - mul method
+    // overloaded method
+    private static int[][] mul(int[][] a, int b[][]){
+        if (a[0].length != b.length) return null;
+
+        int[][] resultant = new int[a.length][b[0].length];
+
+        for (int i = 0; i < a.length; i++){
+            for (int j = 0; j < b[0].length; j ++){
+                int sum = 0;
+                for (int d = 0; d < b.length; d++){
+                    sum += (a[i][d] * b[d][j]);
+                }
+                resultant[i][j] = sum;
+            }
+        }
+
+
+        return resultant;
+    }
       
     // (5) Identity Matrix - id method
 
@@ -85,18 +142,20 @@ public class Matrices
     //
     private static void print( String name, int[][] m )
     {
-       if( !name.equals("") )
+        if( !name.equals("") )
            System.out.printf("Matrix %s:\n" , name);
+        
+        for( int[] row : m)
+        {
+        System.out.printf(" |");
+        for( int e : row )
+        {
+            System.out.printf("%4d", e );
+        }
+        System.out.printf(" |\n");
+        }
+        
        
-       for( int[] row : m)
-       {
-           System.out.printf(" |");
-           for( int e : row )
-           {
-              System.out.printf("%4d", e );
-           }
-           System.out.printf(" |\n");
-       }
     }
     
     private static void print1( String name, int[][] m )
