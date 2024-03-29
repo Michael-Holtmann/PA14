@@ -11,7 +11,7 @@ public class Matrices
     // create expample matrices
     int[][] A = { {1,2,3},
                   {2,5,3}, 
-                  {1,0,80}};
+                  {1,0,8}};
   
     int[][] B = { {5}, 
                   {3}, 
@@ -26,10 +26,10 @@ public class Matrices
                   {2, 5} };
     
     // Display the inital matrices
-    print("A", A);
-    print("B", B);
-    print("D", D);
-    print("E", E);
+    // print("A", A);
+    // print("B", B);
+    // print("D", D);
+    // print("E", E);
     
     // The code for the complete main method is in the text box in the project window.
     // I encourage you to type and understand the code yourself and use the provided
